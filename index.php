@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Yet another website</title>
+</head>
 <body>
 
 <?php
