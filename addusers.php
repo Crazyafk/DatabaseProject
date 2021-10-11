@@ -30,6 +30,8 @@ $stmt->bindParam(':password',$_POST["passwd"]);
 $stmt->bindParam(':gender',$_POST["gender"]);
 $stmt->bindParam(':role',$role);
 
+$stmt->execute();
+
 header('Location: users.php');
 
 ?> 
