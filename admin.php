@@ -11,7 +11,7 @@
 <a href="subjects.php">Add Subjects</a><br>
 <a href="pupildoessubject.php">Signup Pupils to Subjects</a><br>
 <br><br>
-<a href=http://localhost/phpmyadmin/db_structure.php?server=1&db=options>Manage Database (only works on local xammpp host)</a>
+<a href=http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=options>Manage Database (only works on local xammpp host)</a>
 <br><br><br><br>
 
 <a href="install.php">Reset Database with test data</a><br>
