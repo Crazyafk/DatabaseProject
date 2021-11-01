@@ -11,6 +11,7 @@ include_once("connection.php");
 //Create Tables
 $stmt = $conn->prepare("DROP TABLE IF EXISTS TblUsers; CREATE TABLE TblUsers(
     UserID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(20) NOT NULL,
     Gender VARCHAR(1) NOT NULL,
     Surname VARCHAR(20) NOT NULL,
     Forename VARCHAR(20) NOT NULL,
@@ -42,11 +43,12 @@ $stmt->execute();
 $stmt->closeCursor();
 
 //Create Test Data
-function newUser($conn,$gender,$surname,$forename,$password,$house,$year,$role)
+function newUser($conn,$username,$gender,$surname,$forename,$password,$house,$year,$role)
 {
-    $stmt = $conn->prepare("INSERT INTO TblUsers(UserID,Gender,Surname,Forename,Password,House,Year,Role)
-    VALUES(null,:gender,:surname,:forename,:password,:house,:year,:role)");
+    $stmt = $conn->prepare("INSERT INTO TblUsers(UserID,Username,Gender,Surname,Forename,Password,House,Year,Role)
+    VALUES(null,:username,:gender,:surname,:forename,:password,:house,:year,:role)");
 
+    $stmt->bindParam(':username',$username);
     $stmt->bindParam(':forename',$forename);
     $stmt->bindParam(':surname',$surname);
     $stmt->bindParam(':house',$house);
@@ -59,13 +61,13 @@ function newUser($conn,$gender,$surname,$forename,$password,$house,$year,$role)
     $stmt->closeCursor();
 }
 
-newUser($conn,"M","Mama","Joe","password","Fuxx",420,2);
-newUser($conn,"F","Pupil","Learny","password2","Textbook",4,0);
-newUser($conn,"M","Pupil","VOID","3password","DEATH",-1,0);
-newUser($conn,"M","Pupil","Dumbass","password2","Textbook",9,0);
-newUser($conn,"F","Pupil","Pupil","passw0_rd","Fuxx",13,0);
-newUser($conn,"M","Vanker","Boring","physicsisfun","DEATH",4,1);
-newUser($conn,"F","Boring","Similarli","englishisfun","Textbook",3,1);
+newUser($conn,"superadmin","M","Mama","Joe","password","Fuxx",420,2);
+newUser($conn,"pupil.learny","F","Pupil","Learny","password2","Textbook",4,0);
+newUser($conn,"pupil.void","M","Pupil","VOID","3password","DEATH",-1,0);
+newUser($conn,"pupil.dumbass","M","Pupil","Dumbass","password2","Textbook",9,0);
+newUser($conn,"pupil.pupil","F","Pupil","Pupil","passw0_rd","Fuxx",13,0);
+newUser($conn,"vanker.boring","M","Vanker","Boring","physicsisfun","DEATH",4,1);
+newUser($conn,"boring.similarli","F","Boring","Similarli","englishisfun","Textbook",3,1);
 
 function newSubject($conn,$subjectname,$teacher)
 {
