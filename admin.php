@@ -24,5 +24,7 @@ if (!isset($_SESSION['name']))
 <br><br><br><br>
 
 <a href="install.php">Reset Database with test data</a><br>
+
+<a href="logout.php">Logout</a>
 </body>
 </html>
