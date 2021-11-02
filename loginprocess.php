@@ -14,7 +14,7 @@
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC))
     {
-        if($row["Password"]==$_POST["Pword"]){
+        if(password_verify($_POST["Pword"],$row["Password"])){
             header("Location: users.php");
         }else{
             header("Location: login.php");

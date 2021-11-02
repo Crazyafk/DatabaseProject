@@ -15,7 +15,7 @@ $stmt = $conn->prepare("DROP TABLE IF EXISTS TblUsers; CREATE TABLE TblUsers(
     Gender VARCHAR(1) NOT NULL,
     Surname VARCHAR(20) NOT NULL,
     Forename VARCHAR(20) NOT NULL,
-    Password VARCHAR(20) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     House VARCHAR(20) NOT NULL,
     Year INT(2) NOT NULL,
     Role TINYINT(1)
@@ -48,12 +48,14 @@ function newUser($conn,$username,$gender,$surname,$forename,$password,$house,$ye
     $stmt = $conn->prepare("INSERT INTO TblUsers(UserID,Username,Gender,Surname,Forename,Password,House,Year,Role)
     VALUES(null,:username,:gender,:surname,:forename,:password,:house,:year,:role)");
 
+    $hashedpassword = password_hash($password,PASSWORD_DEFAULT);
+
     $stmt->bindParam(':username',$username);
     $stmt->bindParam(':forename',$forename);
     $stmt->bindParam(':surname',$surname);
     $stmt->bindParam(':house',$house);
     $stmt->bindParam(':year',$year);
-    $stmt->bindParam(':password',$password);
+    $stmt->bindParam(':password',$hashedpassword);
     $stmt->bindParam(':gender',$gender);
     $stmt->bindParam(':role',$role);
 
