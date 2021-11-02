@@ -5,6 +5,14 @@
 </head>
 <body>
 
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{    
+    header("Location:login.php"); 
+} 
+?> 
+
 <form action="addtoclass.php" method="post">
     <select name = "student">
     <?php

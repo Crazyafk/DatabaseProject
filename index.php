@@ -5,9 +5,13 @@
 </head>
 <body>
 
-<?php
-echo "My first PHP script!";
-?>
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{    
+    header("Location:login.php"); 
+} 
+?> 
 
 </body>
 </html>

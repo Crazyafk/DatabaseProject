@@ -5,6 +5,14 @@
 </head>
 <body>
 
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{    
+    header("Location:login.php"); 
+} 
+?> 
+
 <p>Hello Admin</p>
 
 <a href="users.php">Add Users</a><br>

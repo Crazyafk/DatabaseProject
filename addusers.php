@@ -8,6 +8,12 @@
 <?php
 include_once("connection.php");
 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{    
+    header("Location:login.php"); 
+}
+
 //sanitise input!
 array_map("htmlspecialchars",$_POST);
 

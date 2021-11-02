@@ -5,6 +5,14 @@
 </head>
 <body>
 
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{    
+    header("Location:login.php"); 
+} 
+?> 
+
 <form action="addsubjects.php" method="post">
     Subject name:<input type="text" name="subjectname"><br>
     Teacher:<input type="text" name="teacher"><br>
