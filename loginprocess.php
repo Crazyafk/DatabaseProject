@@ -17,17 +17,18 @@
     {
         if(password_verify($_POST["Pword"],$row["Password"])){
             $_SESSION['name']=$row["Username"];
-            echo($_SESSION['name']);
             
             //Redirect
-            if(!isset($_SESSION['backURL'])
+            if(!isset($_SESSION['backURL']))
             {
                 $backurl = "/"; //default
             }else{
                 $backurl = $_SESSION['backURL'];
             }
+            
+            echo($backurl);
             unset($_SESSION['backURL']);
-            header('Location '.$backurl);
+            header('Location: '.$backurl);
         }else{
             header("Location: login.php");
         }
