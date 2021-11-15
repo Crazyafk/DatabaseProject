@@ -5,6 +5,15 @@
 </head>
 <body>
 
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{   
+    $_SESSION['backURL'] = $_SERVER['REQUEST_URI']; 
+    header("Location:login.php"); 
+} 
+?> 
+
 <form action="addusers.php" method="post"> 
     First name:<input type="text" name="forename"><br> 
     Last name:<input type="text" name="surname"><br> 

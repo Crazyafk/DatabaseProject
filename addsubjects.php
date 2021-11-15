@@ -12,6 +12,13 @@
     error_reporting(E_ALL);
     try{
         include_once('connection.php');
+
+        session_start();  
+        if (!isset($_SESSION['name'])) 
+        {    
+            header("Location:login.php"); 
+        }
+        
         array_map("htmlspecialchars",$_POST);
 
         $stmt = $conn->prepare("INSERT INTO TblSubjects(SubjectID,Subjectname,Teacher)VALUES(NULL,:subjectname,:teacher)");

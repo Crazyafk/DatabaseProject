@@ -5,6 +5,15 @@
 </head>
 <body>
 
+<?php 
+session_start();  
+if (!isset($_SESSION['name'])) 
+{   
+    $_SESSION['backURL'] = $_SERVER['REQUEST_URI']; 
+    header("Location:login.php"); 
+} 
+?> 
+
 <form action="addtoclass.php" method="post">
     <select name = "student">
     <?php
